@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./InsertData.css";
 
 const InsertData = () => {
@@ -12,6 +12,8 @@ const InsertData = () => {
     }
 
     const submitFormHandler = () => {
+        var valuesToInsert = rowToInsert.split(", ");
+
         //TODO: perform table insert actions here
 
         //TODO: give notice of either success or failure
@@ -27,15 +29,15 @@ const InsertData = () => {
     }
 
     return (
-        <div className='InsertData'>
-            <h1 className='IDHeader'>Insert Data</h1>
+        <div className='Page'>
+            <h1 className='Header'>Insert Data</h1>
             <div className='row'>
                     <div className='col'>
-                        <p className='IDText'>Insert into:</p>
+                        <p className='InputText'>Insert into:</p>
                     </div>
                     <div className='col'>
                         <div className='InputWrapper'>
-                            <select className='IDDropdown' value={tableName} onChange={handleTableNameChoice}>
+                            <select className='Dropdown' value={tableName} onChange={handleTableNameChoice}>
                                 <option value="Teams">Teams</option>
                                 <option value="Games">Games</option>
                                 <option value="Head Coaches">Head Coaches</option>
@@ -48,7 +50,7 @@ const InsertData = () => {
             </div>
             <div className='row'>
                 <div className='col'>
-                    <p className='IDText'>Row to insert:</p>
+                    <p className='InputText'>Row to insert:</p>
                 </div>
                 <div className='col'>
                     <div className='InputWrapper'>
@@ -57,7 +59,7 @@ const InsertData = () => {
                                 className='Input'
                                 value={rowToInsert}
                                 onChange={(event) => setRowToInsert(event.target.value)}
-                                placeholder="Enter row as col_1, col_2, ..., col_n"
+                                placeholder="Enter row as col_0, col_1, ..., col_n"
                             />
                         </form>
                     </div>
