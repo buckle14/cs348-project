@@ -12,6 +12,8 @@ const InsertData = () => {
     }
 
     const submitFormHandler = () => {
+        var valuesToInsert = rowToInsert.split(", ");
+
         //TODO: perform table insert actions here
 
         //TODO: give notice of either success or failure

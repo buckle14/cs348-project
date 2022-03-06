@@ -13,7 +13,11 @@ const EditData = () => {
     }
 
     const submitFormHandler = () => {
-        //TODO: perform table insert actions here
+        var newRowValues = newRow.split(", ");
+
+        //TODO: perform drop of old table row
+
+        //Insert new row under "primaryKeyToEdit" and "newRowValues"
 
         //TODO: give notice of either success or failure
         setFailure(true);
