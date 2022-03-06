@@ -4,3 +4,32 @@
     align-items: center;
     justify-content: center;
   }
+
+.AppHeader {
+    padding-top: 1%;
+}
+
+.IDContentRow {
+    padding-right: 40%;
+}
+
+.IDText {
+    font-weight: bold;
+    font-size: large;
+}
+
+.InsertInto {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.IDTextWrapper {
+    padding-right: 15px;
+}
+
+.IDDropdownWrapper {
+    padding-top: 18px;
+    height: auto;
+    width: auto;
+}
