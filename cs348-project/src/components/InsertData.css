@@ -1,11 +1,11 @@
-.InsertData {
+.Page {
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
   }
 
-.AppHeader {
+.Header {
     padding-top: 1%;
 }
 
@@ -30,12 +30,12 @@
     flex: 1;
 }
 
-.IDText {
+.InputText {
     font-weight: bold;
     font-size: large;
 }
 
-.IDDropdown {
+.Dropdown {
     width: auto;
     height: auto;
 }
