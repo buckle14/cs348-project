@@ -13,26 +13,27 @@ const InsertData = () => {
     }
 
     const submitFormHandler = () => {
-        var values = rowToInsert.split(", "); // == ['Bears', 'Chicago', '32', 'Matt Eberflus', '0', '1']
+        var values = rowToInsert.split(", ");
 
         Axios.post("http://localhost:3001/api/insert", {
-            team_name: 'Cardinals', 
-            city: 'Chicago', 
-            power_ranking: '32',
-            coach_name: 'Matt Eberflus',
-            sb_wins: '0',
-            playoff_appearances: '1'
-        }).then(() => {
-            console.log("SUCCESS");
+            table_name: tableName,
+            team_name: values[0],
+            city: values[1],
+            power_ranking: values[2],
+            coach_name: values[3],
+            sb_wins: values[4],
+            playoff_appearances: values[5]
+        }).then((response) => {
+            console.log(response.data)
+            if(response.data === '') {
+                setSuccess(true);
+                setFailure(false);
+            }
+            else {
+                setSuccess(false);
+                setFailure(true);
+            }
         });
-
-        //TODO: perform table insert actions here
-
-        //TODO: give notice of either success or failure
-        setFailure(true);
-
-        // When done with insert, set values back to defaults
-        clearInputs();
     }
 
     const clearInputs = () => {
@@ -50,12 +51,12 @@ const InsertData = () => {
                     <div className='col'>
                         <div className='InputWrapper'>
                             <select className='Dropdown' value={tableName} onChange={handleTableNameChoice}>
-                                <option value="Teams">Teams</option>
-                                <option value="Games">Games</option>
-                                <option value="Head Coaches">Head Coaches</option>
-                                <option value="Offensive Players">Offensive Players</option>
-                                <option value="Defensive Players">Defensive Players</option>
-                                <option value="Kickers">Kickers</option>
+                                <option value="teams">Teams</option>
+                                <option value="games">Games</option>
+                                <option value="head coaches">Head Coaches</option>
+                                <option value="offensive players">Offensive Players</option>
+                                <option value="defensive players">Defensive Players</option>
+                                <option value="kickers">Kickers</option>
                             </select>
                         </div>
                     </div>
