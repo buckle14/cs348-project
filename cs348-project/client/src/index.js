@@ -12,10 +12,8 @@ import { render } from "react-dom";
 const rootElement = document.getElementById("root");
 
 render(
-  // <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* <App /> */}
         <Route path="/" element={<App/>}/>
         <Route path="getData" element={<GetData/>}/>
         <Route path="removeData" element={<RemoveData/>}/>
@@ -23,9 +21,7 @@ render(
         <Route path="editData" element={<EditData/>}/>
       </Routes>
     </BrowserRouter>,
-  // </React.StrictMode>,
   rootElement
-  // document.getElementById('root')
 );
 
 reportWebVitals();
