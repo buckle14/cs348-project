@@ -13,27 +13,59 @@ const InsertData = () => {
     }
 
     const submitFormHandler = () => {
+        console.log("TABLE NAME WAS: " + tableName)
         var values = rowToInsert.split(", ");
 
-        Axios.post("http://localhost:3001/api/insert", {
-            table_name: tableName,
-            team_name: values[0],
-            city: values[1],
-            power_ranking: values[2],
-            coach_name: values[3],
-            sb_wins: values[4],
-            playoff_appearances: values[5]
-        }).then((response) => {
-            console.log(response.data)
-            if(response.data === '') {
-                setSuccess(true);
-                setFailure(false);
-            }
-            else {
-                setSuccess(false);
-                setFailure(true);
-            }
-        });
+        if(tableName === "teams") {
+            Axios.post("http://localhost:3001/api/insert/teams", {
+                table_name: tableName,
+                team_name: values[0],
+                city: values[1],
+                power_ranking: values[2],
+                coach_name: values[3],
+                sb_wins: values[4],
+                playoff_appearances: values[5]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
+        }
+        else if (tableName === "kickers") {
+            Axios.post("http://localhost:3001/api/insert/kickers", {
+                table_name: tableName,
+                kicker_id: values[0],
+                team_name: values[1],
+                fg_made: values[2],
+                fg_missed: values[3],
+                points: values[4]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
+        }
+        else if (tableName === "games") {
+        }
+        else if (tableName === "head_coaches") {
+        }
+        else if (tableName === "offensive_players") {
+        }
+        else if (tableName === "defensive_players") {
+        }
+        clearInputs();
     }
 
     const clearInputs = () => {
@@ -53,9 +85,9 @@ const InsertData = () => {
                             <select className='Dropdown' value={tableName} onChange={handleTableNameChoice}>
                                 <option value="teams">Teams</option>
                                 <option value="games">Games</option>
-                                <option value="head coaches">Head Coaches</option>
-                                <option value="offensive players">Offensive Players</option>
-                                <option value="defensive players">Defensive Players</option>
+                                <option value="head_coaches">Head Coaches</option>
+                                <option value="offensive_players">Offensive Players</option>
+                                <option value="defensive_players">Defensive Players</option>
                                 <option value="kickers">Kickers</option>
                             </select>
                         </div>
@@ -96,7 +128,7 @@ const InsertData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='SuccessText'>Row "{rowToInsert}" was successfully inserted into the {tableName} table.</p>
+                                <p className='SuccessText'>Success! Your row was successfully inserted into the table.</p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +140,7 @@ const InsertData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='FailureText'>Unable to insert row. Please be sure to verify your formatting was correct and that you are not attempting to insert a duplicate primary key.</p>
+                                <p className='FailureText'>Failure. Unable to insert row. Please be sure to verify your formatting was correct and that you are not attempting to insert a duplicate primary key.</p>
                             </div>
                         </div>
                     </div>

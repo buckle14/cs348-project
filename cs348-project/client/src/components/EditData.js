@@ -15,6 +15,28 @@ const EditData = () => {
     const submitFormHandler = () => {
         var newRowValues = newRow.split(", ");
 
+        if(tableName === "teams") {
+            Axios.post("http://localhost:3001/api/edit/teams", {
+                table_name: tableName,
+                pk: primaryKeyToEdit,
+                team_name: values[0],
+                city: values[1],
+                power_ranking: values[2],
+                coach_name: values[3],
+                sb_wins: values[4],
+                playoff_appearances: values[5]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
+        }
         //TODO: perform drop of old table row
 
         //Insert new row under "primaryKeyToEdit" and "newRowValues"
@@ -104,7 +126,7 @@ const EditData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='SuccessText'>Primary key "{primaryKeyToEdit}"'s row was updated successfully.</p>
+                                <p className='SuccessText'>Success! The row was updated successfully.</p>
                             </div>
                         </div>
                     </div>
