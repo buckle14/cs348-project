@@ -1,12 +1,12 @@
 # cs348-project
 
-# To start app:
-  # Client (terminal #1)
-    # 1) cd client
-    # 2) npm start
-  # Server (terminal #2)
-    # 1) cd server
-    # 2) npm run devStart, start
+# How to run the app
+- Client (terminal #1)
+    1) cd client
+    2) npm start
+- Server (terminal #2)
+    1) cd server
+    2) npm run devStart, start
     
 # Home page
 - Simply used as navigation hub
