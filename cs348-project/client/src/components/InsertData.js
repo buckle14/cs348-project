@@ -13,7 +13,6 @@ const InsertData = () => {
     }
 
     const submitFormHandler = () => {
-        console.log("TABLE NAME WAS: " + tableName)
         var values = rowToInsert.split(", ");
 
         if(tableName === "teams") {
