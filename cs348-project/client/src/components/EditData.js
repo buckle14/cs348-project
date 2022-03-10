@@ -1,8 +1,9 @@
 import React from 'react';
 import "./EditData.css";
+import Axios from "axios";
 
 const EditData = () => {
-    const [tableName, setTableName] = React.useState('Teams');
+    const [tableName, setTableName] = React.useState('teams');
     const [failure, setFailure] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
     const [primaryKeyToEdit, setPrimaryKeyToEdit] = React.useState('');
@@ -15,19 +16,42 @@ const EditData = () => {
     const submitFormHandler = () => {
         var newRowValues = newRow.split(", ");
 
-        //TODO: perform drop of old table row
-
-        //Insert new row under "primaryKeyToEdit" and "newRowValues"
-
-        //TODO: give notice of either success or failure
-        setFailure(true);
-
-        // When done with insert, set values back to defaults
+        if(tableName === "teams") {
+            Axios.post("http://localhost:3001/api/edit/teams", {
+                table_name: tableName,
+                team_name: primaryKeyToEdit,
+                city: newRowValues[0],
+                power_ranking: newRowValues[1],
+                coach_name: newRowValues[2],
+                sb_wins: newRowValues[3],
+                playoff_appearances: newRowValues[4]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
+        }
+        else if (tableName === "kickers") {
+        }
+        else if (tableName === "games") {
+        }
+        else if (tableName === "head_coaches") {
+        }
+        else if (tableName === "offensive_players") {
+        }
+        else if (tableName === "defensive_players") {
+        }
         clearInputs();
     }
 
     const clearInputs = () => {
-        setTableName('Teams')
+        setTableName('teams')
         setPrimaryKeyToEdit('')
         setNewRow('')
     }
@@ -42,12 +66,12 @@ const EditData = () => {
                     <div className='col'>
                         <div className='InputWrapper'>
                             <select className='Dropdown' value={tableName} onChange={handleTableNameChoice}>
-                                <option value="Teams">Teams</option>
-                                <option value="Games">Games</option>
-                                <option value="Head Coaches">Head Coaches</option>
-                                <option value="Offensive Players">Offensive Players</option>
-                                <option value="Defensive Players">Defensive Players</option>
-                                <option value="Kickers">Kickers</option>
+                                <option value="teams">Teams</option>
+                                <option value="games">Games</option>
+                                <option value="head_coaches">Head Coaches</option>
+                                <option value="offensive_players">Offensive Players</option>
+                                <option value="defensive_players">Defensive Players</option>
+                                <option value="kickers">Kickers</option>
                             </select>
                         </div>
                     </div>
@@ -104,7 +128,7 @@ const EditData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='SuccessText'>Primary key "{primaryKeyToEdit}"'s row was updated successfully.</p>
+                                <p className='SuccessText'>Success! The row was updated successfully.</p>
                             </div>
                         </div>
                     </div>
@@ -116,7 +140,7 @@ const EditData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='FailureText'>Unable to update row. Please be sure to verify your formatting was correct and that you are not attempting to edit a primary key which does not exist.</p>
+                                <p className='FailureText'>Failure. Unable to update row. Please be sure to verify your formatting was correct and that you are not attempting to edit a primary key which does not exist.</p>
                             </div>
                         </div>
                     </div>
