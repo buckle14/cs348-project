@@ -15,9 +15,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.json());
 
+
 /****************************
     INSERT BACKEND CALLS    *
 ****************************/
+
 
 // INSERT row into the 'teams' table
 app.post("/api/insert/teams", (req, res) => {
@@ -29,7 +31,8 @@ app.post("/api/insert/teams", (req, res) => {
     const sb_wins = req.body.sb_wins;
     const playoff_appearances = req.body.playoff_appearances;
 
-    const sql = "INSERT INTO " + table_name + " (team_name, city, power_ranking, coach_name, sb_wins, playoff_appearances) VALUES (?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO " + table_name + 
+                " (team_name, city, power_ranking, coach_name, sb_wins, playoff_appearances) VALUES (?, ?, ?, ?, ?, ?)";
     db.query(sql, [team_name, city, power_ranking, coach_name, sb_wins, playoff_appearances], (err, result) => {
         console.log(err)
         res.send(err);
@@ -45,7 +48,8 @@ app.post("/api/insert/kickers", (req, res) => {
     const fg_missed = req.body.fg_missed;
     const points = req.body.points;
 
-    const sql = "INSERT INTO " + table_name + " (kicker_id, team_name, fg_made, fg_missed, points) VALUES (?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO " + table_name +
+                " (kicker_id, team_name, fg_made, fg_missed, points) VALUES (?, ?, ?, ?, ?)";
     db.query(sql, [kicker_id, team_name, fg_made, fg_missed, points], (err, result) => {
         console.log(err)
         res.send(err);
@@ -72,9 +76,11 @@ app.post("/api/insert/defensive_players", (req, res) => {
     
 })
 
+
 /**************************
     EDIT BACKEND CALLS    *
 **************************/
+
 
 //EDIT row in the 'teams' table underneath PK 'team_name'
 app.post("/api/edit/teams", (req, res) => {
@@ -129,9 +135,11 @@ app.post("/api/edit/defensive_players", (req, res) => {
     
 })
 
+
 /****************************
     REMOVE BACKEND CALLS    *
 ****************************/
+
 
 // REMOVE row in the 'teams' table underneath PK 'team_name'
 app.post("/api/remove/teams", (req, res) => {
