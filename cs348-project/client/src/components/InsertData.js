@@ -3,7 +3,7 @@ import "./InsertData.css";
 import Axios from "axios";
 
 const InsertData = () => {
-    const [tableName, setTableName] = React.useState('Teams');
+    const [tableName, setTableName] = React.useState('teams');
     const [rowToInsert, setRowToInsert] = React.useState('');
     const [failure, setFailure] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
@@ -69,7 +69,7 @@ const InsertData = () => {
     }
 
     const clearInputs = () => {
-        setTableName('Teams')
+        setTableName('teams')
         setRowToInsert('')
     }
 
