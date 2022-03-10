@@ -1,3 +1,4 @@
+// Not sure why this is red... but the app still works
 const express = require('express');
 const app = express();
 const mysql = require('mysql');

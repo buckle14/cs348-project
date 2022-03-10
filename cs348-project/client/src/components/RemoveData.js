@@ -106,7 +106,7 @@ const RemoveData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='SuccessText'>Success! The primary key was removed successfully.</p>
+                                <p className='SuccessText'>If you entered a valid primary key, its records were removed successfully.</p>
                             </div>
                         </div>
                     </div>
