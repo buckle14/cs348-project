@@ -131,11 +131,6 @@ app.post("/api/edit/defensive_players", (req, res) => {
     
 })
 
-// EDIT row in the 'defensive_players' table underneath PK 'def_id'
-app.post("/api/edit/defensive_players", (req, res) => {
-    
-})
-
 
 /****************************
     REMOVE BACKEND CALLS    *
@@ -146,10 +141,6 @@ app.post("/api/edit/defensive_players", (req, res) => {
 app.post("/api/remove/teams", (req, res) => {
     const table_name = req.body.table_name;
     const team_name = req.body.team_name;
-
-    //TODO: unsure if worth the effort, but no error message sent to user if trying to delete
-    //      primary key that DNE
-    //      aside from that, this works just fine
 
     const sql = "DELETE FROM " + table_name + " WHERE team_name = '" + team_name + "';";
     db.query(sql, (err, result) => {
@@ -175,11 +166,6 @@ app.post("/api/remove/head_coaches", (req, res) => {
 
 // REMOVE row in the 'offensive_players' table underneath PK 'off_id'
 app.post("/api/remove/offensive_players", (req, res) => {
-    
-})
-
-// REMOVE row in the 'defensive_players' table underneath PK 'def_id'
-app.post("/api/remove/defensive_players", (req, res) => {
     
 })
 
