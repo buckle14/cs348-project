@@ -16,7 +16,7 @@ const EditData = () => {
     const submitFormHandler = () => {
         var newRowValues = newRow.split(", ");
 
-        if(tableName === "teams") {
+        if(tableName === "teams" && primaryKeyToEdit !== "") {
             Axios.post("http://localhost:3001/api/edit/teams", {
                 table_name: tableName,
                 team_name: primaryKeyToEdit,
@@ -37,15 +37,19 @@ const EditData = () => {
                 }
             });
         }
-        else if (tableName === "kickers") {
+        else if (tableName === "kickers" && primaryKeyToEdit !== "") {
         }
-        else if (tableName === "games") {
+        else if (tableName === "games" && primaryKeyToEdit !== "") {
         }
-        else if (tableName === "head_coaches") {
+        else if (tableName === "head_coaches" && primaryKeyToEdit !== "") {
         }
-        else if (tableName === "offensive_players") {
+        else if (tableName === "offensive_players" && primaryKeyToEdit !== "") {
         }
-        else if (tableName === "defensive_players") {
+        else if (tableName === "defensive_players" && primaryKeyToEdit !== "") {
+        }
+        else {
+            setSuccess(false);
+            setFailure(true);
         }
         clearInputs();
     }
@@ -128,7 +132,7 @@ const EditData = () => {
                     <div className='row'>
                         <div className='col'>
                             <div className='NoticeWrapper'>
-                                <p className='SuccessText'>Success! The row was updated successfully.</p>
+                                <p className='SuccessText'>If you entered a valid primary key, its records were edited successfully.</p>
                             </div>
                         </div>
                     </div>

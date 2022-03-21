@@ -29,15 +29,15 @@ const RemoveData = () => {
                 }
             });
         }
-        else if (tableName === "kickers") {
+        else if (tableName === "kickers" && primaryKeyToRemove !== "") {
         }
-        else if (tableName === "games") {
+        else if (tableName === "games" && primaryKeyToRemove !== "") {
         }
-        else if (tableName === "head_coaches") {
+        else if (tableName === "head_coaches" && primaryKeyToRemove !== "") {
         }
-        else if (tableName === "offensive_players") {
+        else if (tableName === "offensive_players" && primaryKeyToRemove !== "") {
         }
-        else if (tableName === "defensive_players") {
+        else if (tableName === "defensive_players" && primaryKeyToRemove !== "") {
         }
         else {
             setSuccess(false);
