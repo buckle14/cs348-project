@@ -181,7 +181,31 @@ app.post("/api/edit/head_coaches", (req, res) => {
 
 // EDOT row in the 'offensive_players' table underneath PK 'off_id'
 app.post("/api/edit/offensive_players", (req, res) => {
-    
+    const table_name = req.body.table_name;
+    const off_id = req.body.off_id;
+    const team_name = req.body.team_name;
+    const player_name = req.body.player_name;
+    const position = req.body.position;
+    const touchdowns = req.body.touchdowns;
+    const receptions = req.body.receptions;
+    const recieving_yards = req.body.recieving_yards;
+    const passing_yards = req.body.passing_yards;
+    const targets = req.body.targets;
+
+    const sql = "UPDATE " + table_name + " SET" +
+                    " team_name = '" + team_name +
+                    "', player_name = '" + player_name +
+                    "', position = '" + position +
+                    "', touchdowns = '" + touchdowns +
+                    "', receptions = '" + receptions +
+                    "', recieving_yards = '" + recieving_yards +
+                    "', passing_yards = '" + passing_yards +
+                    "', targets = '" + targets +
+                    "' WHERE off_id = '" + off_id + "';";
+    db.query(sql, (err, result) => {
+        console.log(err)
+        res.send(err);
+    })
 })
 
 // EDIT row in the 'defensive_players' table underneath PK 'def_id'
