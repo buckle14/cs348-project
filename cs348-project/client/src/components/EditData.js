@@ -127,6 +127,26 @@ const EditData = () => {
             });
         }
         else if (tableName === "defensive_players" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/defensive_players", {
+                table_name: tableName,
+                def_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                player_name: newRowValues[1],
+                position: newRowValues[2],
+                sacks: newRowValues[3],
+                interceptions: newRowValues[4],
+                blocks: newRowValues[5]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else {
             setSuccess(false);
