@@ -108,7 +108,23 @@ app.post("/api/edit/teams", (req, res) => {
 
 // EDOT row in the 'kickers' table underneath PK 'kicker_id'
 app.post("/api/edit/kickers", (req, res) => {
-    
+    const table_name = req.body.table_name;
+    const kicker_id = req.body.kicker_id;
+    const team_name = req.body.team_name;
+    const fg_made = req.body.fg_made;
+    const fg_missed = req.body.fg_missed;
+    const points = req.body.points;
+
+    const sql = "UPDATE " + table_name + " SET" +
+                    " team_name = '" + team_name +
+                    "', fg_made = '" + fg_made +
+                    "', fg_missed = '" + fg_missed +
+                    "', points = '" + points +
+                    "' WHERE kicker_id = '" + kicker_id + "';";
+    db.query(sql, (err, result) => {
+        console.log(err)
+        res.send(err);
+    })
 })
 
 // EDIT row in the 'games' table underneath PK 'games_id'
