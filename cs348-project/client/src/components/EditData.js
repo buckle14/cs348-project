@@ -79,6 +79,28 @@ const EditData = () => {
             });
         }
         else if (tableName === "head_coaches" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/head_coaches", {
+                table_name: tableName,
+                coach_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                coach_name: newRowValues[1],
+                coach_games: newRowValues[2],
+                coach_wins: newRowValues[3],
+                coach_losses: newRowValues[4],
+                coach_ties: newRowValues[5],
+                coach_sb_wins: newRowValues[6],
+                coach_playoff_appearances: newRowValues[7]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "offensive_players" && primaryKeyToEdit !== "") {
         }
