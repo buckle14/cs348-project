@@ -253,7 +253,14 @@ app.post("/api/remove/teams", (req, res) => {
 
 // REMOVE row in the 'kickers' table underneath PK 'kicker_id'
 app.post("/api/remove/kickers", (req, res) => {
-    
+    const table_name = req.body.table_name;
+    const kicker_id = req.body.kicker_id;
+
+    const sql = "DELETE FROM " + table_name + " WHERE kicker_id = '" + kicker_id + "';";
+    db.query(sql, (err, result) => {
+        console.log(err)
+        res.send(err);
+    })
 })
 
 // REMOVE row in the 'games' table underneath PK 'games_id'
