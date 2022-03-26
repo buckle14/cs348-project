@@ -129,7 +129,25 @@ app.post("/api/edit/kickers", (req, res) => {
 
 // EDIT row in the 'games' table underneath PK 'games_id'
 app.post("/api/edit/games", (req, res) => {
-    
+    const table_name = req.body.table_name;
+    const game_id = req.body.game_id;
+    const home_team = req.body.home_team;
+    const away_team = req.body.away_team;
+    const week = req.body.week;
+    const winner = req.body.winner;
+    const loser = req.body.loser;
+
+    const sql = "UPDATE " + table_name + " SET" +
+                    " home_team = '" + home_team +
+                    "', away_team = '" + away_team +
+                    "', week = '" + week +
+                    "', winner = '" + winner +
+                    "', loser = '" + loser +
+                    "' WHERE game_id = '" + game_id + "';";
+    db.query(sql, (err, result) => {
+        console.log(err)
+        res.send(err);
+    })
 })
 
 // EDIT row in the 'head_coaches' table underneath PK 'coach_id'
