@@ -46,6 +46,20 @@ const RemoveData = () => {
             });
         }
         else if (tableName === "games" && primaryKeyToRemove !== "") {
+            Axios.post("http://localhost:3001/api/remove/games", {
+                table_name: tableName,
+                game_id: primaryKeyToRemove,
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "head_coaches" && primaryKeyToRemove !== "") {
         }
