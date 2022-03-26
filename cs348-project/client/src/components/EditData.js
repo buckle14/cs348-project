@@ -58,6 +58,25 @@ const EditData = () => {
             });
         }
         else if (tableName === "games" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/games", {
+                table_name: tableName,
+                game_id: primaryKeyToEdit,
+                home_team: newRowValues[0],
+                away_team: newRowValues[1],
+                week: newRowValues[2],
+                winner: newRowValues[3],
+                loser: newRowValues[4]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "head_coaches" && primaryKeyToEdit !== "") {
         }
