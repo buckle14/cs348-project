@@ -265,7 +265,14 @@ app.post("/api/remove/kickers", (req, res) => {
 
 // REMOVE row in the 'games' table underneath PK 'games_id'
 app.post("/api/remove/games", (req, res) => {
-    
+    const table_name = req.body.table_name;
+    const game_id = req.body.game_id;
+
+    const sql = "DELETE FROM " + table_name + " WHERE game_id = '" + game_id + "';";
+    db.query(sql, (err, result) => {
+        console.log(err)
+        res.send(err);
+    })
 })
 
 // REMOVE row in the 'head_coaches' table underneath PK 'coach_id'
