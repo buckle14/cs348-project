@@ -210,7 +210,27 @@ app.post("/api/edit/offensive_players", (req, res) => {
 
 // EDIT row in the 'defensive_players' table underneath PK 'def_id'
 app.post("/api/edit/defensive_players", (req, res) => {
-    
+    const table_name = req.body.table_name;
+    const def_id = req.body.def_id;
+    const team_name = req.body.team_name;
+    const player_name = req.body.player_name;
+    const position = req.body.position;
+    const sacks = req.body.sacks;
+    const interceptions = req.body.interceptions;
+    const blocks = req.body.blocks;
+
+    const sql = "UPDATE " + table_name + " SET" +
+                    " team_name = '" + team_name +
+                    "', player_name = '" + player_name +
+                    "', position = '" + position +
+                    "', sacks = '" + sacks +
+                    "', interceptions = '" + interceptions +
+                    "', blocks = '" + blocks +
+                    "' WHERE def_id = '" + def_id + "';";
+    db.query(sql, (err, result) => {
+        console.log(err)
+        res.send(err);
+    })
 })
 
 
