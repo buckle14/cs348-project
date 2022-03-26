@@ -38,6 +38,24 @@ const EditData = () => {
             });
         }
         else if (tableName === "kickers" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/kickers", {
+                table_name: tableName,
+                kicker_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                fg_made: newRowValues[1],
+                fg_missed: newRowValues[2],
+                points: newRowValues[3]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "games" && primaryKeyToEdit !== "") {
         }
