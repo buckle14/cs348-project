@@ -30,6 +30,20 @@ const RemoveData = () => {
             });
         }
         else if (tableName === "kickers" && primaryKeyToRemove !== "") {
+            Axios.post("http://localhost:3001/api/remove/kickers", {
+                table_name: tableName,
+                kicker_id: primaryKeyToRemove,
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "games" && primaryKeyToRemove !== "") {
         }
