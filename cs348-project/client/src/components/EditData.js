@@ -103,6 +103,28 @@ const EditData = () => {
             });
         }
         else if (tableName === "offensive_players" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/offensive_players", {
+                table_name: tableName,
+                off_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                player_name: newRowValues[1],
+                position: newRowValues[2],
+                touchdowns: newRowValues[3],
+                receptions: newRowValues[4],
+                recieving_yards: newRowValues[5],
+                passing_yards: newRowValues[6],
+                targets: newRowValues[7]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "defensive_players" && primaryKeyToEdit !== "") {
         }
