@@ -34,10 +34,52 @@ const RemoveData = () => {
         else if (tableName === "games" && primaryKeyToRemove !== "") {
         }
         else if (tableName === "head_coaches" && primaryKeyToRemove !== "") {
+            Axios.post("http://localhost:3001/api/remove/head_coaches", {
+                table_name: tableName,
+                coach_id: primaryKeyToRemove,
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "offensive_players" && primaryKeyToRemove !== "") {
+            Axios.post("http://localhost:3001/api/remove/offensive_players", {
+                table_name: tableName,
+                off_id: primaryKeyToRemove,
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "defensive_players" && primaryKeyToRemove !== "") {
+            Axios.post("http://localhost:3001/api/remove/defensive_players", {
+                table_name: tableName,
+                def_id: primaryKeyToRemove,
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else {
             setSuccess(false);

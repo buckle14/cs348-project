@@ -57,12 +57,93 @@ const InsertData = () => {
             });
         }
         else if (tableName === "games") {
+            Axios.post("http://localhost:3001/api/insert/games", {
+                table_name: tableName,
+                game_id: values[0],
+                week: values[1],
+                home_team: values[2],
+                away_team: values[3],
+                winner: values[4],
+                loser: values[5]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "head_coaches") {
+            Axios.post("http://localhost:3001/api/insert/head_coaches", {
+                table_name: tableName,
+                coach_id: values[0],
+                team_name: values[1],
+                coach_name: values[2],
+                coach_games: values[3],
+                coach_wins: values[4],
+                coach_losses: values[5],
+                coach_ties: values[6],
+                coach_SB_wins: values[7],
+                coach_playoff_appearances: values[8]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "offensive_players") {
+            Axios.post("http://localhost:3001/api/insert/offensive_players", {
+                table_name: tableName,
+                off_id: values[0],
+                team_name: values[1],
+                position: values[2],
+                touchdowns: values[3],
+                receptions: values[4],
+                recieving_yards: values[5],
+                passing_yards: values[6],
+                targets: values[7]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "defensive_players") {
+            Axios.post("http://localhost:3001/api/insert/defensive_players", {
+                table_name: tableName,
+                def_id: values[0],
+                team_name: values[1],
+                position: values[2],
+                sacks: values[3],
+                interceptions: values[4],
+                blocks: values[5]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         clearInputs();
     }
