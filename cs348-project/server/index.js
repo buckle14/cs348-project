@@ -68,7 +68,7 @@ app.post("/api/insert/games", (req, res) => {
     const loser = req.body.loser;
 
     const sql = "INSERT INTO " + table_name +
-                " (game_id, week, home_team, away_team, winner, loser) VALUES (?, ?, ?, ?, ?, ?)";
+                " (game_id, home_team, away_team, week, winner, loser) VALUES (?, ?, ?, ?, ?, ?)";
     db.query(sql, [game_id, week, home_team, away_team, winner, loser], (err, result) => {
         console.log(err)
         res.send(err);

@@ -117,7 +117,6 @@ const RemoveData = () => {
     }
 
     const clearInputs = () => {
-        setTableName('teams')
         setprimaryKeyToRemove('')
     }
 

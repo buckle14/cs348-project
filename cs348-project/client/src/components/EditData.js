@@ -156,7 +156,6 @@ const EditData = () => {
     }
 
     const clearInputs = () => {
-        setTableName('teams')
         setPrimaryKeyToEdit('')
         setNewRow('')
     }

@@ -149,7 +149,6 @@ const InsertData = () => {
     }
 
     const clearInputs = () => {
-        setTableName('teams')
         setRowToInsert('')
     }
 
