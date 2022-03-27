@@ -60,9 +60,9 @@ const InsertData = () => {
             Axios.post("http://localhost:3001/api/insert/games", {
                 table_name: tableName,
                 game_id: values[0],
-                week: values[1],
-                home_team: values[2],
-                away_team: values[3],
+                home_team: values[1],
+                away_team: values[2],
+                week: values[3],
                 winner: values[4],
                 loser: values[5]
             }).then((response) => {
@@ -106,12 +106,13 @@ const InsertData = () => {
                 table_name: tableName,
                 off_id: values[0],
                 team_name: values[1],
-                position: values[2],
-                touchdowns: values[3],
-                receptions: values[4],
-                recieving_yards: values[5],
-                passing_yards: values[6],
-                targets: values[7]
+                player_name: values[2],
+                position: values[3],
+                touchdowns: values[4],
+                receptions: values[5],
+                recieving_yards: values[6],
+                passing_yards: values[7],
+                targets: values[8]
             }).then((response) => {
                 console.log(response.data)
                 if(response.data === '') {
@@ -129,10 +130,11 @@ const InsertData = () => {
                 table_name: tableName,
                 def_id: values[0],
                 team_name: values[1],
-                position: values[2],
-                sacks: values[3],
-                interceptions: values[4],
-                blocks: values[5]
+                player_name: values[2],
+                position: values[3],
+                sacks: values[4],
+                interceptions: values[5],
+                blocks: values[6]
             }).then((response) => {
                 console.log(response.data)
                 if(response.data === '') {

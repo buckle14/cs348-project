@@ -61,15 +61,15 @@ app.post("/api/insert/kickers", (req, res) => {
 app.post("/api/insert/games", (req, res) => {
     const table_name = req.body.table_name;
     const game_id = req.body.game_id;
-    const week = req.body.week;
     const home_team = req.body.home_team;
     const away_team = req.body.away_team;
+    const week = req.body.week;
     const winner = req.body.winner;
     const loser = req.body.loser;
 
     const sql = "INSERT INTO " + table_name +
-                " (game_id, week, home_team, away_team, winner, loser) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(sql, [game_id, week, home_team, away_team, winner, loser], (err, result) => {
+                " (game_id, home_team, away_team, week, winner, loser) VALUES (?, ?, ?, ?, ?, ?)";
+    db.query(sql, [game_id, home_team, away_team, week, winner, loser], (err, result) => {
         console.log(err)
         res.send(err);
     })
@@ -101,6 +101,7 @@ app.post("/api/insert/offensive_players", (req, res) => {
     const table_name = req.body.table_name;
     const off_id = req.body.off_id;
     const team_name = req.body.team_name;
+    const player_name = req.body.player_name;
     const position = req.body.position;
     const touchdowns = req.body.touchdowns;
     const receptions = req.body.receptions;
@@ -109,8 +110,8 @@ app.post("/api/insert/offensive_players", (req, res) => {
     const targets = req.body.targets;
 
     const sql = "INSERT INTO " + table_name +
-                " (off_id, team_name, position, touchdowns, receptions, recieving_yards, passing_yards, targets) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    db.query(sql, [off_id, team_name, position, touchdowns, receptions, recieving_yards, passing_yards, targets], (err, result) => {
+                " (off_id, team_name, player_name, position, touchdowns, receptions, recieving_yards, passing_yards, targets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [off_id, team_name, player_name, position, touchdowns, receptions, recieving_yards, passing_yards, targets], (err, result) => {
         console.log(err)
         res.send(err);
     })
@@ -121,14 +122,15 @@ app.post("/api/insert/defensive_players", (req, res) => {
     const table_name = req.body.table_name;
     const def_id = req.body.def_id;
     const team_name = req.body.team_name;
+    const player_name = req.body.player_name;
     const position = req.body.position;
     const sacks = req.body.sacks;
     const interceptions = req.body.interceptions;
     const blocks = req.body.blocks;
 
     const sql = "INSERT INTO " + table_name +
-                " (def_id, team_name, position, sacks, interceptions, blocks) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(sql, [def_id, team_name, position, sacks, interceptions, blocks], (err, result) => {
+                " (def_id, team_name, player_name, position, sacks, interceptions, blocks) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [def_id, team_name, player_name, position, sacks, interceptions, blocks], (err, result) => {
         console.log(err)
         res.send(err);
     })
