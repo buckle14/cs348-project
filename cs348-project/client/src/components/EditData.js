@@ -38,14 +38,115 @@ const EditData = () => {
             });
         }
         else if (tableName === "kickers" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/kickers", {
+                table_name: tableName,
+                kicker_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                fg_made: newRowValues[1],
+                fg_missed: newRowValues[2],
+                points: newRowValues[3]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "games" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/games", {
+                table_name: tableName,
+                game_id: primaryKeyToEdit,
+                home_team: newRowValues[0],
+                away_team: newRowValues[1],
+                week: newRowValues[2],
+                winner: newRowValues[3],
+                loser: newRowValues[4]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "head_coaches" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/head_coaches", {
+                table_name: tableName,
+                coach_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                coach_name: newRowValues[1],
+                coach_games: newRowValues[2],
+                coach_wins: newRowValues[3],
+                coach_losses: newRowValues[4],
+                coach_ties: newRowValues[5],
+                coach_sb_wins: newRowValues[6],
+                coach_playoff_appearances: newRowValues[7]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "offensive_players" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/offensive_players", {
+                table_name: tableName,
+                off_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                player_name: newRowValues[1],
+                position: newRowValues[2],
+                touchdowns: newRowValues[3],
+                receptions: newRowValues[4],
+                recieving_yards: newRowValues[5],
+                passing_yards: newRowValues[6],
+                targets: newRowValues[7]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else if (tableName === "defensive_players" && primaryKeyToEdit !== "") {
+            Axios.post("http://localhost:3001/api/edit/defensive_players", {
+                table_name: tableName,
+                def_id: primaryKeyToEdit,
+                team_name: newRowValues[0],
+                player_name: newRowValues[1],
+                position: newRowValues[2],
+                sacks: newRowValues[3],
+                interceptions: newRowValues[4],
+                blocks: newRowValues[5]
+            }).then((response) => {
+                console.log(response.data)
+                if(response.data === '') {
+                    setSuccess(true);
+                    setFailure(false);
+                }
+                else {
+                    setSuccess(false);
+                    setFailure(true);
+                }
+            });
         }
         else {
             setSuccess(false);
@@ -55,7 +156,6 @@ const EditData = () => {
     }
 
     const clearInputs = () => {
-        setTableName('teams')
         setPrimaryKeyToEdit('')
         setNewRow('')
     }
