@@ -9,7 +9,8 @@ export default function App() {
         <Link to="/EditData">Edit Data</Link> | {" "}
         <Link to="/GetData">Get Data</Link> | {" "}
         <Link to="/InsertData">Insert Data</Link> | {" "}
-        <Link to="/RemoveData">Remove Data</Link>
+        <Link to="/RemoveData">Remove Data</Link> | {" "}
+        <Link to="/FunFacts">Fun Facts</Link>
       </nav>
     </div>
   );
