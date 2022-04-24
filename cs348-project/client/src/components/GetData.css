@@ -129,3 +129,7 @@
 .bottomPadding {
   padding-bottom: 50px;
 }
+
+table, th, td {
+  border: 1px solid;
+}

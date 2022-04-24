@@ -15,6 +15,8 @@ const GetData = () => {
     const [playoffAppearancesMax, setPlayoffAppearancesMax] = React.useState('');
     const [failure, setFailure] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
+    const [dataObtained, setDataObtained] = React.useState(false);
+    const [dataBack, setDataBack] = React.useState([]);
 
     const handleTableNameChoice = (event) => {
         setTableName(event.target.value);
@@ -27,7 +29,7 @@ const GetData = () => {
             playoffAppearancesMin || playoffAppearancesMax) {
             sql += " WHERE ";
             if(teamName) {
-                sql += " team_name = '" + teamName + "'";
+                sql += "team_name = '" + teamName + "'";
                 if(city || powerRankingMin || powerRankingMax || coachName || sbWinsMin || sbWinsMax ||
                     playoffAppearancesMin || playoffAppearancesMax) {
                     sql += " AND";
@@ -84,7 +86,16 @@ const GetData = () => {
         }
         sql += ";";
         console.log(sql);
+
+        Axios.post("http://localhost:3001/api/get/teams", {
+                sql: sql
+            }).then((response) => {
+                console.log(response.data);
+                setDataBack(response.data);
+                setDataObtained(true);
+            });
         
+
         clearInputs();
     }
 
@@ -285,18 +296,31 @@ const GetData = () => {
                     </div>
                 </div>
             </div>
-            {/* {
-                success &&
-                <div>
-                    <div className='row'>
-                        <div className='col'>
-                            <div className='NoticeWrapper'>
-                                <p className='SuccessText'>Success! Your row was successfully inserted into the table.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            } */}
+            {
+                dataObtained &&
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team Name</th>
+                            <th>City</th>
+                            <th>Power Ranking</th>
+                            <th>Coach Name</th>
+                            <th>Superbowl Wins</th>
+                            <th>Playoff Appearances</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{dataBack[0].team_name}</td>
+                            <td>{dataBack[0].city}</td>
+                            <td>{dataBack[0].power_ranking}</td>
+                            <td>{dataBack[0].coach_name}</td>
+                            <td>{dataBack[0].SB_wins}</td>
+                            <td>{dataBack[0].playoff_appearances}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
             {
                 failure &&
                 <div>

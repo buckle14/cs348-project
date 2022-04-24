@@ -373,3 +373,19 @@ app.post("/api/remove/defensive_players", (req, res) => {
 app.listen(3001, () => {
     console.log("Running on port 3001");
 })
+
+
+/****************************
+    DATA RETRIVAL CALLS     *
+****************************/
+
+
+// REMOVE row in the 'teams' table underneath PK 'team_name'
+app.post("/api/get/teams", (req, res) => {
+    const sql = req.body.sql;
+
+    console.log("sql was: " + sql);
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
+})
