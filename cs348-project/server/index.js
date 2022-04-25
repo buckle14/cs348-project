@@ -8,7 +8,7 @@ const cors = require('cors');
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'cs348-project',
+    password: 'longshirt5',
     database: 'cs348-project',
 });
 
@@ -386,6 +386,85 @@ app.post("/api/get/teams", (req, res) => {
 
     console.log("sql was: " + sql);
     db.query(sql, (err, result) => {
+        res.send(result);
+    })
+})
+
+
+/****************************
+    FUN FACT BACKEND CALLS  *
+****************************/
+
+// Which defensive player has the most sacks?
+app.post("/api/funfacts/1", (req, res) => {
+    const sql = "CALL sp_mostSacks;"
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
+        res.send(result);
+    })
+})
+
+// Which quarterback has the most passing yards?
+app.post("/api/funfacts/2", (req, res) => {
+    const sql = "CALL sp_mostPassYds;"
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
+        res.send(result);
+    })
+})
+
+
+// Which team has the most superbowl wins?
+app.post("/api/funfacts/3", (req, res) => {
+    const sql = "CALL sp_mostSbWins;"
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
+        res.send(result);
+    })
+})
+
+// Which coach has the most playoff appearances?
+app.post("/api/funfacts/4", (req, res) => {
+    const sql = "CALL sp_mostPlayoffApps;"
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
+        res.send(result);
+    })
+})
+
+// Which kicker has the most field goals made?
+app.post("/api/funfacts/5", (req, res) => {
+    const sql = "SELECT kicker_id FROM kickers ORDER BY fg_made DESC LIMIT 1;"
+    console.log(sql)
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
+        res.send(result);
+    })
+})
+
+ // Which wide receiver has the most yards?
+ app.post("/api/funfacts/6", (req, res) => {
+    const sql = "SELECT player_name FROM offensive_players WHERE position = 'Wide Reciever' ORDER BY recieving_yards DESC LIMIT 1;"
+    console.log(sql)
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
+        res.send(result);
+    })
+})
+
+// Who has caught the most touchdowns?
+app.post("/api/funfacts/7", (req, res) => {
+    const sql = "SELECT player_name FROM offensive_players ORDER BY touchdowns DESC LIMIT 1;"
+    console.log(sql)
+    db.query(sql, (err, result) => {
+        console.log(err)
+        console.log(result)
         res.send(result);
     })
 })
